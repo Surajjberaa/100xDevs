@@ -6,19 +6,67 @@
  */
 
 function wait1(t) {
-
+    return new Promise(function(resolve){
+        setTimeout(resolve,t * 1000)
+    })
 }
 
 function wait2(t) {
-
+    return new Promise(function(resolve){
+        setTimeout(resolve,t * 1000)
+    })
 }
 
 function wait3(t) {
+    return new Promise(function(resolve){
+        setTimeout(resolve,t * 1000)
+    })
+}
+
+ function calculateTime(t1, t2, t3) {
+
+    const start = Date.now();
+    // return Promise.all([wait1(t1), wait2(t2), wait3(t3)]).then(function() {
+        
+    //      const end = Date.now()
+    //      return end
+        
+    // }).then((en)=>{
+    //     // console.log(duration);
+       
+    //     const duration = end - start;
+    //     return duration
+    // })
+
+
+    // wait1(t1).then()
+    // wait2(t2).then()
+    // wait3(t3).then().then(function(){
+    //     duration = Date.now() - start
+    //     console.log(duration);
+    //     return duration
+    // })
+    let durationTotal
+
+    const p = new Promise(function(resolve){
+        wait1(t1).then(function(){
+            return wait2(t2).then(function(){
+               return wait3(t3).then(function(){
+                    duration = Date.now() - start
+                    // console.log(typeof(duration));
+                    console.log(duration);
+                    resolve(duration);
+                })
+            })        
+        })
+    }) 
+
+    return  p
+
+    
 
 }
 
-function calculateTime(t1, t2, t3) {
-
-}
+calculateTime(1, 1, 10)
 
 module.exports = calculateTime;
