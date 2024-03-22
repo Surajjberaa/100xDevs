@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let timeout 
+        function debouncedCalculateSum(){
+            clearTimeout(timeout)
+            timeout = setTimeout(calculateSum, 500);
+        }
+
+        function calculateSum(){
+            const a = document.getElementById("input1").value
+            const b = document.getElementById("input2").value
+            // document.getElementById("result").innerHTML= parseInt(a) + parseInt(b)
+            // console.log(parseInt(a) + parseInt(b)) ;
+
+            fetch("https://sum-server.100xdevs.com/sum?a="+a+"&b="+b)
+                .then((res)=>{
+                   res.text()
+                   .then((res)=>{
+                       document.getElementById("result").innerHTML= res
+                    })
+                })
+        }
+    </script>
+    <input oninput="debouncedCalculateSum()" type="text" class="inputs" id="input1"><br></br>
+    <input oninput="debouncedCalculateSum()" type="text" class="inputs" id="input2"><br></br>
+    <!-- <button onclick="calculateSum()">Calculate Sum</button><br></br> -->
+    <div id="result"></div>
+</body>
+</html>
