@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { CreateTodo } from './components/CreateTodo'
 import { Todos } from './components/Todos'
+import {Wrapper} from './components/Wrapper'
 
 function App() {
   const [todos, setTodos] = useState([])
