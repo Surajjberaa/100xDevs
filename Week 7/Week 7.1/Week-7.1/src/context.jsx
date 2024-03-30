@@ -1,5 +1,5 @@
-import { useContext } from "react";
+import { createContext } from "react";
 
-export const CountContext = useContext({
-    count, setCount
+export const CountContext = createContext({
+    count: 0, setCount: ()=>{}
 });

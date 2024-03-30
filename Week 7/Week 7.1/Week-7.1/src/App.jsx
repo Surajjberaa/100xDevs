@@ -14,6 +14,7 @@ function App() {
 }
 
 function Count() {
+    console.log("rendered");
   return <div>
     <CountRenderer  />
     <Buttons  />
@@ -22,15 +23,15 @@ function Count() {
 
 function CountRenderer() {
 
-  const count = useContext(CountContext)
+  const {count} = useContext(CountContext)
   return <div>
     {count}
   </div>
 }
 
 function Buttons() {
-  const count = useContext(CountContext);
-  const setCount = useContext(CountContext);
+  const {count} = useContext(CountContext);
+  const {setCount} = useContext(CountContext);
   return <div>
     <button onClick={() => {
       setCount(count + 1)
