@@ -17,10 +17,10 @@ const authMiddleware = (req, res, next) => {
     try {
         
         const verified = jwt.verify(token, JWT_SECRET)
-        console.log(verified);
+        // console.log(verified);
         
         req.userId = verified.userId
-        console.log(req.userId);
+        // console.log(req.userId);
         next()
 
     } catch (error) {

@@ -6,7 +6,7 @@ const JWT_SECRET = require("../config")
 const authMiddleware = require("../middleware")
 
 const router = express.Router()
-console.log("user.js");
+// console.log("user.js");
 const userValidation = zod.object({
     username: zod.string().email(),
     password: zod.string(),
@@ -30,7 +30,7 @@ router.post("/signup", async (req, res, err)=>{
         username: req.body.username
         
     })
-    console.log(existingUser);
+    // console.log(existingUser);
     if (!existingUser) {
         const user = await User.create({
             username: req.body.username,
@@ -122,7 +122,7 @@ router.put("/", authMiddleware, async (req, res) => {
     const { success } = updateSchema.safeParse(req.body)
     // console.log("Schema done");
     try {
-        console.log("Inside try");
+        // console.log("Inside try");
         if (!success) {
             // console.log("!success");
             res.status(411).json({
@@ -151,17 +151,14 @@ router.put("/", authMiddleware, async (req, res) => {
 })
 
 router.get("/bulk", authMiddleware, async (req, res) => {
-    const filter = req.query.filter
+    const filter = req.query.filter || ""
 
     const users = await User.find({
-        $or: [
+        $or: [{
+                firstName: {"$regex": filter , "$options": "i" }
+            },
             {
-                firstName: {
-                    "$regex": filter
-                },
-                lastName: {
-                    "$regex": filter
-                }
+                lastName: { "$regex": filter, "$options": "i"}
             }
         ]
     })

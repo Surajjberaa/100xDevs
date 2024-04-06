@@ -11,8 +11,8 @@ router.get("/balance", authMiddleware,  async (req, res) => {
         userId: req.userId
     })
 
-    console.log(account);
-    console.log(req.userId);    
+    // console.log(account);
+    // console.log(req.userId);    
     res.json({
         balance: account.balance
     })
