@@ -20,6 +20,7 @@ model User {
   password String
   firstName String?
   lastName String?
+  todos Todo[]
 }
 
 model Todo {
@@ -28,4 +29,7 @@ model Todo {
   description String?
   done Boolean @default(false)
   userId Int
+  user User @relation(fields: [userId], references: [id])
 }
+
+// postgres://postgres.msxoizlynryqkbxkcrqz:[YOUR-PASSWORD]@aws-0-us-west-1.pooler.supabase.com:5432/postgres
