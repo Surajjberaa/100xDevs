@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.insertUser = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 function insertUser(username, password, firstName, lastName) {
@@ -28,4 +29,5 @@ function insertUser(username, password, firstName, lastName) {
         console.log(res);
     });
 }
+exports.insertUser = insertUser;
 insertUser("suraj1@gmail.com", "password", "Suraj", "Bera");
