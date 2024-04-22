@@ -1,16 +1,16 @@
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
-async function createTodo(){
+export default async function createTodo(title: string, description: string, userId: number){
     const res = await prisma.todo.create({
         data: {
-            title: "Book title",
-            description: "Book desc",
-            userId: 1
+            title,
+            description,
+            userId
         }
     })
     console.log(res);
     
 }
 
-createTodo();
+// createTodo();
